@@ -26,22 +26,26 @@ class Park extends Model
         return $this->hasMany(ParkActivity::class);
     }
 
-    protected static function booted(){
-        static::creating(function ($park){
-            $park->slug = $this->generateUniqueSlug($park->name);
-
-
+    protected static function booted()
+    {
+        static::creating(function ($park) {
+            $park->slug = $park->generateUniqueSlug($park->name); // Используйте объект $park, а не $this
         });
     }
 
-    private function generateUniqueSlug($name){
+    private function generateUniqueSlug($name)
+    {
         $slug = Str::slug($name);
         
-        $count = Park::where('slug', 'like', $slug.'%')->count();//ищю в табл если есть слаг с таким именем и возвращяю сколько его там
+        // Проверяем, сколько таких слагов уже есть в базе
+        $count = Park::where('slug', 'like', $slug.'%')->count();
 
-        if($count){
+        // Если такие слаги уже есть, добавляем уникальный суффикс
+        if ($count) {
             $slug = $slug . "-" . ($count + 1);
         }
+
+        return $slug; // Обязательно возвращаем новый слаг
     }
 
 }

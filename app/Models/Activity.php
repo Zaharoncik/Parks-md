@@ -17,9 +17,7 @@ class Activity extends Model
 
     protected static function booted(){
         static::creating(function ($activity){
-            $activity->slug = $this->generateUniqueSlug($activity->name);
-
-
+            $activity->slug = $activity->generateUniqueSlug($activity->name);
         });
     }
 
@@ -31,5 +29,7 @@ class Activity extends Model
         if($count){
             $slug = $slug . "-" . ($count + 1);
         }
+
+        return $slug;
     }
 }
