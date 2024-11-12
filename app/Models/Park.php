@@ -11,6 +11,7 @@ class Park extends Model
         'name',
         'street',
         'country',
+        'city',
         'area',
         'opens_at',
         'closes_at',

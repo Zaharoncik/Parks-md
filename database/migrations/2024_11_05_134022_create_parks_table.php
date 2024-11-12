@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('street', 100);
             $table->string('city', 50);
             $table->string('country', 50);
-            $table->integer('area', 50);
+            $table->integer('area');
             $table->time('opens_at')->nullable();
             $table->time('closes_at')->nullable();
             $table->string('google_maps_url');
