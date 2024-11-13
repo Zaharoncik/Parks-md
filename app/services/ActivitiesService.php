@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Activity;
 
-class ActivityService extends BaseServices {
+class ActivitiesService extends BaseServices {
     public function __construct(Activity $model)
     {
         $this->model = $model;
